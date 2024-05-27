@@ -1,4 +1,7 @@
 # Towns for SoftUni
+
+## Exercise in teamwork at SoftUni. Project is at this repo: https://github.com/petkokar/Towns
+
 Code for the Git and GitHub Exercise
 
 Miroslav-valsorim takes the role "Leader".  
