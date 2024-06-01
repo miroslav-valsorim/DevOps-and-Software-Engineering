@@ -32,6 +32,16 @@ server.put('/books/:id', (req, res) => {
     }
 });
 
+server.patch('/books/:id', (req, res) => {
+    const book = books.find(b => b.id === req.params.id);
+    if (book) {
+        Object.assign(book, req.body); 
+        res.json(book);
+    } else {
+        res.status(404).json({ message: 'Book not found' });
+    }
+});
+
 server.delete('/books/:id', (req, res) => {
     const bookIndex = books.findIndex(b => b.id === req.params.id);
     if (bookIndex > -1) {

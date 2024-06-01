@@ -96,6 +96,32 @@ describe('Books', () => {
         });
     });
 
+    it('has to PATCH an existing book', (done) => {
+
+        const body = {
+            author: 'Book Author Partially Updated',
+            title: 'Book Title Partially Updated'
+        };
+    
+        const bookId = '1'; 
+    
+        chai.request(server)
+            .patch(`/books/${bookId}`)
+            .send(body)
+            .end((err, res) => {
+                if (err) {
+                    return done(err);
+                }
+                expect(res.statusCode, "Status code:").to.be.equal(200);
+                expect(res.body, "Type:").to.be.a('object');
+                expect(res.body.id, "Book id property:").to.be.equal(bookId);
+                expect(res.body.title, "Book title property:").to.be.equal(body.title);
+                expect(res.body.author, "Book author property:").to.be.equal(body.author);
+                //console.log("response: ", res.body);
+                done();
+            });
+    });
+
     it('has to Delete an existing book', (done) => {
 
         const body = {
