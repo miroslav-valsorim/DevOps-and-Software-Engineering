@@ -5,11 +5,11 @@ on:
     push:
         branches: [ "main" ]
         paths:
-          - DevOps-and-Software-Engineering/Software Engineering and DevOps - may 2024/10-GithubActions-Exercise/01.Student-Registry-App/**'
+          - 'DevOps-and-Software-Engineering/Software Engineering and DevOps - may 2024/10-GithubActions-Exercise/01.Student-Registry-App/**'
     pull_request:
         branches: [ "main" ]
         paths:
-          - DevOps-and-Software-Engineering/Software Engineering and DevOps - may 2024/10-GithubActions-Exercise/01.Student-Registry-App/**'
+          - 'DevOps-and-Software-Engineering/Software Engineering and DevOps - may 2024/10-GithubActions-Exercise/01.Student-Registry-App/**'
 
 jobs:
   build-and-test:
