@@ -34,20 +34,20 @@ jobs:
     
     - name: Install npm pack & Build the program
       run: |
-        cd DevOps-and-Software-Engineering/Software Engineering and DevOps - may 2024/10-GithubActions-Exercise/01.Student-Registry-App
+        cd Software Engineering and DevOps - may 2024/10-GithubActions-Exercise/01.Student-Registry-App
         npm install
 
     - name: Run the application
       run: |
-        cd DevOps-and-Software-Engineering/Software Engineering and DevOps - may 2024/10-GithubActions-Exercise/01.Student-Registry-App
+        cd Software Engineering and DevOps - may 2024/10-GithubActions-Exercise/01.Student-Registry-App
         npm start &
 
     - name: Run IU tests
       run: |
-        cd DevOps-and-Software-Engineering/Software Engineering and DevOps - may 2024/10-GithubActions-Exercise/01.Student-Registry-App
+        cd Software Engineering and DevOps - may 2024/10-GithubActions-Exercise/01.Student-Registry-App
         npm test
 
     - name: Run Audit tests
       run: |
-        cd DevOps-and-Software-Engineering/Software Engineering and DevOps - may 2024/10-GithubActions-Exercise/01.Student-Registry-App
+        cd Software Engineering and DevOps - may 2024/10-GithubActions-Exercise/01.Student-Registry-App
         npm run audit-test
