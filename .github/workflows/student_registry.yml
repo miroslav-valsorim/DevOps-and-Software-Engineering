@@ -19,7 +19,7 @@ jobs:
     - uses: actions/checkout@v4
 
     - name: Change to Student Registry App directory
-      run: cd Folder-one/Folder-two/01.Student-Registry-App
+      run: cd Software Engineering and DevOps - may 2024/10-GithubActions-Excercise/01.Student-Registry-App
 
     - name: Use Node.js 20.x
       uses: actions/setup-node@v3
