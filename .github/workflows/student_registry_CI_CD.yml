@@ -1,0 +1,55 @@
+name: Student Registry App CI
+
+on:
+  push:
+    paths:
+      - 'Software Engineering and DevOps - may 2024/10-GithubActions-Excercise/01.Student-Registry-App-CI-CD/**'
+    branches: [ "main" ]
+  pull_request:
+    paths:
+      - 'Software Engineering and DevOps - may 2024/10-GithubActions-Excercise/01.Student-Registry-App-CI-CD/**'
+    branches: [ "main" ]
+  workflow_dispatch:
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Change to Student Registry App directory
+      run: cd "Software Engineering and DevOps - may 2024/10-GithubActions-Excercise/01.Student-Registry-App-CI-CD"
+
+    - name: Use Node.js 20.x
+      uses: actions/setup-node@v3
+      with:
+        node-version: 20.x
+        cache: 'npm'
+        cache-dependency-path: "Software Engineering and DevOps - may 2024/10-GithubActions-Excercise/01.Student-Registry-App-CI-CD/package.json"
+
+    - name: Install npm packages & Build the program
+      run: |
+        cd "Software Engineering and DevOps - may 2024/10-GithubActions-Excercise/01.Student-Registry-App-CI-CD"
+        npm install
+
+    - name: Run the application
+      run: |
+        cd "Software Engineering and DevOps - may 2024/10-GithubActions-Excercise/01.Student-Registry-App-CI-CD"
+        npm start &
+
+    - name: Run UI tests
+      run: |
+        cd "Software Engineering and DevOps - may 2024/10-GithubActions-Excercise/01.Student-Registry-App-CI-CD"
+        npm test
+  
+  deploy:
+    runs-on: ubuntu-latest
+    needs: build-and-test
+    steps:
+        - uses: actions/checkout@v4
+        - uses: JorgeLNJunior/render-deploy@v1.4.4
+          with:
+            service_id: ${{ secrets.MY_RENDER_SERVICE_ID }}
+            api_key: ${{ secrets.MY_RENDER_API_KEY }}
+            wait_deploy: true 
