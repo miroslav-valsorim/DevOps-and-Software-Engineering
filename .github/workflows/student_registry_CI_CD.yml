@@ -1,4 +1,4 @@
-name: Student Registry App CI
+name: Student Registry App CI/CD
 
 on:
   push:
