@@ -3,11 +3,11 @@ name: Student Registry App CI
 on:
   push:
     paths:
-      - 'Software Engineering and DevOps - may 2024/10-GithubActions-Excercise/01.Student-Registry-App/**'
+      - 'Software-Engineering-and-DevOps-may-2024/10-GithubActions-Excercise/01.Student-Registry-App/**'
     branches: [ "main" ]
   pull_request:
     paths:
-      - 'Software Engineering and DevOps - may 2024/10-GithubActions-Excercise/01.Student-Registry-App/**'
+      - 'Software-Engineering-and-DevOps-may-2024/10-GithubActions-Excercise/01.Student-Registry-App/**'
     branches: [ "main" ]
   workflow_dispatch:
 
@@ -19,33 +19,33 @@ jobs:
     - uses: actions/checkout@v4
 
     - name: Change to Student Registry App directory
-      run: cd "Software Engineering and DevOps - may 2024/10-GithubActions-Excercise/01.Student-Registry-App"
+      run: cd "Software-Engineering-and-DevOps-may-2024/10-GithubActions-Excercise/01.Student-Registry-App"
 
     - name: Use Node.js 20.x
       uses: actions/setup-node@v3
       with:
         node-version: 20.x
         cache: 'npm'
-        cache-dependency-path: "Software Engineering and DevOps - may 2024/10-GithubActions-Excercise/01.Student-Registry-App/package.json"
+        cache-dependency-path: "Software-Engineering-and-DevOps-may-2024/10-GithubActions-Excercise/01.Student-Registry-App/package.json"
 
     - name: Install npm packages & Build the program
       run: |
-        cd "Software Engineering and DevOps - may 2024/10-GithubActions-Excercise/01.Student-Registry-App"
+        cd "Software-Engineering-and-DevOps-may-2024/10-GithubActions-Excercise/01.Student-Registry-App"
         npm install
 
     - name: Run the application
       run: |
-        cd "Software Engineering and DevOps - may 2024/10-GithubActions-Excercise/01.Student-Registry-App"
+        cd "Software-Engineering-and-DevOps-may-2024/10-GithubActions-Excercise/01.Student-Registry-App"
         npm start &
 
     - name: Run UI tests
       run: |
-        cd "Software Engineering and DevOps - may 2024/10-GithubActions-Excercise/01.Student-Registry-App"
+        cd "Software-Engineering-and-DevOps-may-2024/10-GithubActions-Excercise/01.Student-Registry-App"
         npm test
 
     # - name: Run Audit tests
     #   run: |
-    #     cd "Software Engineering and DevOps - may 2024/10-GithubActions-Excercise/01.Student-Registry-App"
+    #     cd "Software-Engineering-and-DevOps-may-2024/10-GithubActions-Excercise/01.Student-Registry-App"
     #     npm run audit-test
     #
     #  commented out this test because at some point updates will appear and will fail the CI
