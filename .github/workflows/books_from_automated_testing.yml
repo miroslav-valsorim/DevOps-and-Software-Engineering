@@ -1,0 +1,44 @@
+name: Books App From Automated Testing CI
+
+on:
+  push:
+    paths:
+      - 'Software-Engineering-and-DevOps-may-2024/08-Automated-Testing-Excercise/Books/**'
+    branches: [ "main" ]
+  pull_request:
+    paths:
+      - 'Software-Engineering-and-DevOps-may-2024/08-Automated-Testing-Excercise/Books/**'
+    branches: [ "main" ]
+  workflow_dispatch:
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Change to Student Registry App directory
+      run: cd "Software-Engineering-and-DevOps-may-2024/08-Automated-Testing-Excercise/Books/"
+
+    - name: Use Node.js 20.x
+      uses: actions/setup-node@v3
+      with:
+        node-version: 20.x
+        cache: 'npm'
+        cache-dependency-path: "Software-Engineering-and-DevOps-may-2024/08-Automated-Testing-Excercise/Books/package.json"
+
+    - name: Install npm packages & Build the program
+      run: |
+        cd "Software-Engineering-and-DevOps-may-2024/08-Automated-Testing-Excercise/Books"
+        npm install
+
+    - name: Run the application
+      run: |
+        cd "Software-Engineering-and-DevOps-may-2024/08-Automated-Testing-Excercise/Books"
+        npm run start-server &
+
+    - name: Run API tests
+      run: |
+        cd "Software-Engineering-and-DevOps-may-2024/08-Automated-Testing-Excercise/Books"
+        npm run start-mocha
