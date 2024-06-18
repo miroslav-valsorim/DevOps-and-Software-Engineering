@@ -1,0 +1,45 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('Npm Install') {
+            steps {
+                bat 'npm install'
+            }
+        }
+
+        stage('Run Audit test') {
+            steps {
+                bat 'npm audit'
+            }
+        }
+
+        stage('Run Tests') {
+            steps {
+                bat 'npm test'
+            }
+        }
+
+        stage('Build Docker Image') {
+            steps {
+                withCredentials([usernamePassword(credentialsId: 'd07e0ac8-becc-4f4e-bb02-452bf39b7a97', passwordVariable: 'password', usernameVariable: 'user')]) {
+                    bat '''docker build -t miroslavvalsorim/studentsjenkins:1.0.0 .
+                        docker login -u %user% --password %password%
+                        docker push miroslavvalsorim/studentsjenkins:1000 '''
+                }
+            }
+        }
+
+        stage('Deploy Docker Image') {
+            steps {
+                script {
+                    input("Deploy to Production ?") // will prompt for approval before deployment
+                }
+                 withCredentials([usernamePassword(credentialsId: 'd07e0ac8-becc-4f4e-bb02-452bf39b7a97', passwordVariable: 'password', usernameVariable: 'user')]) {
+                    bat '''docker pull miroslavvalsorim/studentsjenkins:1.0.0 .
+                        docker run -d -p 8081:8081 miroslavvalsorim/studentsjenkins:1.0.0 '''
+                }
+            }
+        }
+    }
+}
