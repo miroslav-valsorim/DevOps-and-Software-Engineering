@@ -22,6 +22,8 @@ docker logs [name] # check logs from selected container, can also be selected wi
 
 docker logs [name] -f # check logs in runtime (real time)
 
+docker network create [network_name] # creates new network
+
 docker network ls # shows all available networks  
 
 docker exec -it [name] /bin/sh # 'logs' into the selected container with 'it' interactive mode, can also be selected with the id (few number of it to show that is unique)
@@ -51,3 +53,5 @@ docker volume ls # checks volumes available
 docker volume inspect [name] # checks volume info
 
 docker volume rm [name] # removes volume
+
+docker build -t [image_name] . # build new image
