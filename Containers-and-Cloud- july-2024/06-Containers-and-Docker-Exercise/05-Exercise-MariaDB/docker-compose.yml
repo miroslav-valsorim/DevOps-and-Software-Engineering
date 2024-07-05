@@ -1,0 +1,23 @@
+
+name: mariadb-ex5
+services:
+    mariadb_server:
+        container_name: mariadb_server
+        environment:
+            - MARIADB_USER=maria_user
+            - MARIADB_PASSWORD=db_password
+            - MARIADB_ROOT_PASSWORD=secret_password
+        networks:
+            - mariadb_network
+        image: mariadb:latest
+    mariadb_client:
+        container_name: mariadb_client
+        networks:
+            - mariadb_network
+        environment:
+            - MARIADB_ROOT_PASSWORD=secret_password
+        image: mariadb:latest
+networks:
+    mariadb_network:
+        external: true
+        name: mariadb_network

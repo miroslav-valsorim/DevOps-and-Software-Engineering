@@ -1,6 +1,3 @@
-version: '3.8'
-
-# ignored : docker volume create sqldata
 
 name: sql-ex4
 services:
