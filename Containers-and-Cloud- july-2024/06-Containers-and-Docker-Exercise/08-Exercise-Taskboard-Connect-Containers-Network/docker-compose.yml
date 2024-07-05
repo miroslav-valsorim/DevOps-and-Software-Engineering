@@ -1,5 +1,33 @@
+
+name: taskboard-ex8
+
 services:
-  custom-name:
-    image: miroslavvalsorim/taskboard_app
-    build:
-      dockerfile: TaskBoard.WebApp/Dockerfile
+
+    sqlserver:
+
+        container_name: sqlserver
+        environment:
+            - ACCEPT_EULA=Y
+            - MSSQL_SA_PASSWORD=yourStrongPassword12#
+        ports:
+            - 1433:1433
+        volumes:
+            - sqldata:/var/opt/mssql
+        networks:
+            - taskboard_network
+        image: mcr.microsoft.com/mssql/server
+
+    taskboard_app:
+
+        container_name: taskboard
+        ports:
+            - 5000:80
+        networks:
+            - taskboard_network
+        image: miroslavvalsorim/taskboard_app
+
+networks:
+    taskboard_network:
+
+volumes:
+    sqldata:
