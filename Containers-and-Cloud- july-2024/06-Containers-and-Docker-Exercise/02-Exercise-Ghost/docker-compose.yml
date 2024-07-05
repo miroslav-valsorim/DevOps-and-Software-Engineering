@@ -1,0 +1,11 @@
+version: '3.8'
+
+name: ghost-ex2
+services:
+    ghost:
+        container_name: ghost-container
+        ports:
+            - 3001:2368
+        environment:
+            - NODE_ENV=development
+        image: ghost:latest

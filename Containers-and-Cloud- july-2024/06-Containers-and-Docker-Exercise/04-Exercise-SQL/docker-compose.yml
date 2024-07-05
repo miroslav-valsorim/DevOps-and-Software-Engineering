@@ -1,0 +1,19 @@
+version: '3.8'
+
+# ignored : docker volume create sqldata
+
+name: sql-ex4
+services:
+    server:
+        environment:
+            - ACCEPT_EULA=Y
+            - MSSQL_SA_PASSWORD=yourStrongPassword12#
+        ports:
+            - 1433:1433
+        volumes:
+            - sqldata:/var/opt/mssql
+        image: mcr.microsoft.com/mssql/server
+volumes:
+    sqldata:
+        external: true
+        name: sqldata

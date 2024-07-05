@@ -1,0 +1,11 @@
+version: '3.8'
+
+name: httpd-ex3
+services:
+    httpd:
+        container_name: my-apache-app
+        ports:
+            - 8080:80
+        volumes:
+            - ${PWD}:/usr/local/apache2/htdocs/
+        image: httpd:latest
