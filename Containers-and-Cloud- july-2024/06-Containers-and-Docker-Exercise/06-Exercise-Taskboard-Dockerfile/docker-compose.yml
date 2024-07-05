@@ -1,0 +1,5 @@
+services:
+  custom-name:
+    image: miroslavvalsorim/taskboard_app
+    build:
+      dockerfile: TaskBoard.WebApp/Dockerfile
