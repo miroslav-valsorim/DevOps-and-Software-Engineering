@@ -1,0 +1,8 @@
+
+services:
+  tracker_app_service:
+    image: miroslavvalsorim/tracker_app
+    build: .
+    ports:
+      - 8080:80
+    container_name: tracker_app
