@@ -1,0 +1,67 @@
+
+name: blue-vs-green-ex11
+
+services:
+
+  vote:
+    image: vote # runs only if the image is available localy !
+    build: # ./vote # build the image Dockerfile in folder /vote
+      context: ./vote
+      dockerfile: Dockerfile
+    container_name: vote # not necessarily needed if the service name is set
+    volumes:
+     - vote:/app
+    ports:
+      - 5000:80
+    networks:
+      - backend
+      - frontend
+
+  result:
+    image: result # runs only if the image is available localy !
+    build: #./result # build the image Dockerfile in folder /result
+      context: ./result
+      dockerfile: Dockerfile
+    container_name: result  # not necessarily needed if the service name is set
+    volumes:
+      - result:/app
+    ports:
+      - 5001:80
+    networks:
+      - backend
+      - frontend
+
+  worker:
+    image: worker # runs only if the image is available localy !
+    build: #./worker # build the image Dockerfile in folder /worker
+      context: ./worker
+      dockerfile: Dockerfile
+    container_name: worker  # not necessarily needed if the service name is set
+    networks:
+      - backend
+
+  redis:
+    image: redis # runs only if the image is available localy !
+    container_name: redis  # not necessarily needed if the service name is set
+    networks:
+      - backend
+
+  db:
+    image: postgres # runs only if the image is available localy !
+    container_name: db  # not necessarily needed if the service name is set
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+    networks:
+      - backend
+    volumes:
+      - db:/var/lib/postgresql/data
+
+volumes:
+  vote:
+  result:
+  db:
+
+networks:
+  backend:
+  frontend:
