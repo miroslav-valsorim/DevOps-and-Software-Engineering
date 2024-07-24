@@ -6,3 +6,6 @@ docker run -d --name web -p 8000:8000 -v ./static:/app/staticfiles -e DEBUG=Fals
 
 # with docker-compose.yml
 
+docker-compose build
+
+docker-compose up -d
