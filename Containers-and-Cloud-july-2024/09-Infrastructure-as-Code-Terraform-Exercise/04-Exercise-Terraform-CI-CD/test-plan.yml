@@ -1,0 +1,34 @@
+name: "Terraform Test"
+
+on:
+  push:
+    branches:
+      - "main"
+
+jobs:
+  terraform-test:
+
+    name: "Terraform Test"
+    runs-on: ubuntu-latest
+
+    steps:
+
+      # Checkout the repository to the GitHub Action Runner
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      # Install the latest verssion of the Terraform CLI
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v2
+
+      # Initialize terraform 
+      - name: Terraform Init and log because of the backend "azurerm" in the main.tf
+        run: az login -u ${{ secrets.AZ_USERNAME }} -p ${{ secrets.AZ_PASSWORD }} && terraform init
+
+      # Format the file
+      - name: Terraform Format
+        run: terraform fmt -check
+
+      # Validate terraform file
+      - name: Terraform Validate
+        run: terraform validate
