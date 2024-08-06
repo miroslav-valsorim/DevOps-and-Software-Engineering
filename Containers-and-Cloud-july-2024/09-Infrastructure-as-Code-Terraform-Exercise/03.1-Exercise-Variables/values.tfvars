@@ -1,5 +1,5 @@
 resource_group_name     = "TaskBoardRG"
-resource_group_location = "Italy North"
+resource_group_location = "North Europe"
 app_service_plan_name   = "miro-plan"
 app_service_name        = "task-board"
 sql_server_name         = "mssqlserver"
