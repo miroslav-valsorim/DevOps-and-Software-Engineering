@@ -45,7 +45,7 @@ resource "azurerm_linux_web_app" "alwa" {
 
   site_config {
     application_stack {
-      node_version = "16-lts"
+      dotnet_version = "6.0"
     }
     always_on = false
   }
@@ -61,11 +61,11 @@ resource "azurerm_mssql_server" "ams" {
 }
 
 resource "azurerm_mssql_database" "amd" {
-  name           = "${var.sql_database_name}-${random_integer.ri.result}"
-  server_id      = azurerm_mssql_server.ams.id
-  collation      = "SQL_Latin1_General_CP1_CI_AS"
-  license_type   = "LicenseIncluded"
-  max_size_gb    = 2
+  name         = "${var.sql_database_name}-${random_integer.ri.result}"
+  server_id    = azurerm_mssql_server.ams.id
+  collation    = "SQL_Latin1_General_CP1_CI_AS"
+  license_type = "LicenseIncluded"
+  # max_size_gb    = 2
   sku_name       = "S0"
   zone_redundant = false
 }
