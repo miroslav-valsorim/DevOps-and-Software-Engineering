@@ -1,4 +1,4 @@
-# Deploying Container Nginx to Azure
+# Deploying to Azure with terraform CI/CD
 
 ![Azure](screenshots/0.png)
 
