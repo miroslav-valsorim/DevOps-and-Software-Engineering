@@ -5,7 +5,14 @@ on:
     branches:
       - "main"
 
+env:
+  AMR_CLIENT_ID: ${{ secrets.AZURE_CLIENT_ID }}
+  AMR_CLIENT_SECRET: ${{ secrets.AZURE_CLIENT_SECRET }}
+  AMR_SUBSCRIPTION_ID: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+  AMR_TENANT_ID: ${{ secrets.AZURE_TENANT_ID }}
+
 jobs:
+
   terraform-test:
 
     name: "Terraform Test"
@@ -22,7 +29,7 @@ jobs:
         uses: hashicorp/setup-terraform@v2
 
       # Initialize terraform 
-      - name: Terraform Init and log because of the backend "azurerm" in the main.tf
+      - name: Terraform Init
         run: az login -u ${{ secrets.AZ_USERNAME }} -p ${{ secrets.AZ_PASSWORD }} && terraform init
 
       # Format the file

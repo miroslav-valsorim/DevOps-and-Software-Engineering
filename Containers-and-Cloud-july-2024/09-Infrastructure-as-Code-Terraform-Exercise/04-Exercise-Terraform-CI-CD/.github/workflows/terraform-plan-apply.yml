@@ -34,12 +34,12 @@ jobs:
         uses: hashicorp/setup-terraform@v2
 
       # Initialize terraform 
-      - name: Terraform Init and log because of the backend "azurerm" in the main.tf
+      - name: Terraform Init
         run: az login -u ${{ secrets.AZ_USERNAME }} -p ${{ secrets.AZ_PASSWORD }} && terraform init
 
       # Generate an execution plan for Terraform
       - name: Terraform Plan
-        run: terraform plan input=false -out=tfplan
+        run: terraform plan -out=tfplan
 
       # Save plan to artifacts
       - name: Save Terraform Plan
@@ -65,7 +65,7 @@ jobs:
         uses: hashicorp/setup-terraform@v2
 
       # Initialize terraform 
-      - name: Terraform Init and log because of the backend "azurerm" in the main.tf
+      - name: Terraform Init 
         run: az login -u ${{ secrets.AZ_USERNAME }} -p ${{ secrets.AZ_PASSWORD }} && terraform init
 
       # Download saved plan from artifacts
