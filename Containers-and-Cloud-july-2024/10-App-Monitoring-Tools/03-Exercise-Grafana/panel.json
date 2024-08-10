@@ -1,0 +1,79 @@
+{
+    "type": "histogram",
+    "title": "Panel Title",
+    "gridPos": {
+      "x": 0,
+      "y": 0,
+      "w": 12,
+      "h": 8
+    },
+    "datasource": {
+      "uid": "bdubedt0foxs0c",
+      "type": "prometheus"
+    },
+    "id": 1,
+    "targets": [
+      {
+        "datasource": {
+          "type": "prometheus",
+          "uid": "bdubedt0foxs0c"
+        },
+        "refId": "A",
+        "expr": "probe_http_duration_seconds",
+        "range": true,
+        "instant": false,
+        "editorMode": "builder",
+        "legendFormat": "__auto",
+        "useBackend": false,
+        "disableTextWrap": false,
+        "fullMetaSearch": false,
+        "includeNullMetadata": true
+      }
+    ],
+    "options": {
+      "legend": {
+        "showLegend": true,
+        "displayMode": "list",
+        "placement": "bottom",
+        "calcs": []
+      }
+    },
+    "fieldConfig": {
+      "defaults": {
+        "custom": {
+          "stacking": {
+            "mode": "none",
+            "group": "A"
+          },
+          "lineWidth": 1,
+          "fillOpacity": 80,
+          "gradientMode": "none",
+          "hideFrom": {
+            "tooltip": false,
+            "viz": false,
+            "legend": false
+          }
+        },
+        "color": {
+          "mode": "palette-classic"
+        },
+        "mappings": [],
+        "thresholds": {
+          "mode": "absolute",
+          "steps": [
+            {
+              "value": null,
+              "color": "green"
+            },
+            {
+              "value": 80,
+              "color": "red"
+            }
+          ]
+        }
+      },
+      "overrides": []
+    }
+  }
+
+  
