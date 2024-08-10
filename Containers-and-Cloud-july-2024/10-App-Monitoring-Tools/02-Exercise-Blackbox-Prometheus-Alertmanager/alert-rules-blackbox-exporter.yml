@@ -1,0 +1,21 @@
+groups:
+  - name: Connection was slow
+    rules:
+      - alert: SlowConnection
+        expr: probe_http_duration_seconds{phase="connect"} > 0.0025
+        for: 3s
+        labels:
+          severity: warning
+        annotations:
+          summary: "Connection took more than 2.5 milliseconds"
+
+
+  - name: Status 200 check
+    rules:
+      - alert: Non200StatusCode
+        expr: probe_http_status_code != 200
+        for: 3s
+        labels:
+          severity: critical
+        annotations:
+          summary: "HTTP status code is not 200"
