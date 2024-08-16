@@ -1,0 +1,52 @@
+name: Exam Prep ex1
+services:
+
+    mongo:
+        container_name: mongodb
+        networks:
+            - goals
+        # environment:
+        #     - MONGO_INITDB_ROOT_USERNAME=root
+        #     - MONGO_INITDB_ROOT_PASSWORD=secret
+        env_file:
+            # env/mongo.env will also work
+            - ./env/mongo.env
+        volumes:
+            - data:/data/db
+        image: mongo
+
+    backend:
+        container_name: backend
+        ports:
+            - 80:80
+        networks:
+            - goals
+        volumes:
+            - logs:/logs
+            - /backend/node_modules
+        # environment:
+        #     - MONGODB_USERNAME=root
+        #     - MONGODB_PASSWORD=secret
+        env_file:
+            # env/backend.env will also work
+            - ./env/backend.env
+        image: miroslavvalsorim/backend
+
+    frontend:
+        container_name: frontend
+        ports:
+            - 3000:3000
+        networks:
+            - goals
+        volumes:
+            - /frontend/src:/backend/src
+        image: miroslavvalsorim/frontend
+
+networks:
+    goals:
+        name: goals
+volumes:
+    data:
+        name: data
+    logs:
+        name: logs
