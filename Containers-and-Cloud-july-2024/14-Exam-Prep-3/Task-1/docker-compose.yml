@@ -1,0 +1,46 @@
+name: Exam Prep ex1
+services:
+
+    mongo:
+        container_name: mongodb
+        networks:
+            - games
+        # environment:
+        #     - MONGO_INITDB_ROOT_USERNAME=max
+        #     - MONGO_INITDB_ROOT_PASSWORD=secret
+        env_file:
+            # env/mongo.env will also work
+            - ./env/mongo.env
+        volumes:
+            - data:/data/db
+        image: mongo
+
+    backend:
+        container_name: backend
+        ports:
+            - 80:80
+        networks:
+            - games
+        volumes:
+            - logs:/logs
+            - /backend/node_modules
+        image: miroslavvalsorim/backend
+
+    frontend:
+        container_name: frontend
+        ports:
+            - 3000:3000
+        networks:
+            - games
+        volumes:
+            - /frontend/src:/backend/src
+        image: miroslavvalsorim/frontend
+
+networks:
+    games:
+        name: games
+volumes:
+    data:
+        name: data
+    logs:
+        name: logs
