@@ -1,0 +1,46 @@
+name: Exam ex1 mirkoslavhhristov
+services:
+
+    mongo:
+        container_name: mongodb
+        networks:
+            - shopping
+        environment:
+            - MONGO_INITDB_ROOT_USERNAME=root
+            - MONGO_INITDB_ROOT_PASSWORD=secret
+        volumes:
+            - data:/data/db
+        image: mongo
+
+    backend:
+        container_name: backend
+        ports:
+            - 80:80
+        networks:
+            - shopping
+        volumes:
+            - logs:/logs
+            - /backend/node_modules
+        environment:
+            - MONGODB_USERNAME=root
+            - MONGODB_PASSWORD=secret
+        image: miroslavvalsorim/backend
+
+    frontend:
+        container_name: frontend
+        ports:
+            - 3000:3000
+        networks:
+            - shopping
+        volumes:
+            - /frontend/src:/backend/src
+        image: miroslavvalsorim/frontend
+
+networks:
+    shopping:
+        name: shopping
+volumes:
+    data:
+        name: data
+    logs:
+        name: logs
